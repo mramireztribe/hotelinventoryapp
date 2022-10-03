@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Room, RoomList } from './rooms';
 
 @Component({
@@ -6,12 +6,12 @@ import { Room, RoomList } from './rooms';
   templateUrl: './rooms.component.html',
   styleUrls: ['./rooms.component.scss']
 })
-export class RoomsComponent implements OnInit {
+export class RoomsComponent implements OnInit, DoCheck {
 
   hotelName = 'Hilton Hotel';
   numberOfRooms = 10;
   hideRooms = false;
-  title = "Room List";
+  title = "Rooms List";
 
   rooms: Room = {
     totalRooms: 20,
@@ -91,9 +91,13 @@ export class RoomsComponent implements OnInit {
     ];
   }
 
+  ngDoCheck(): void {
+    console.log('ngDoCheck called');
+  }
+
   toggle() {
     this.hideRooms = !this.hideRooms;
-    this.title = "Rooms List";
+    this.title = "Room List";
   }
 
   addRoom(): void {
