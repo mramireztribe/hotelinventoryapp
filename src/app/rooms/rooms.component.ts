@@ -106,9 +106,7 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
     console.log("this.headerChildrenComponent", this.headerChildrenComponent.last.title = "Last Title");
   }
 
-  ngAfterViewChecked(): void {
-
-  }
+  ngAfterViewChecked(): void { }
 
   toggle() {
     this.hideRooms = !this.hideRooms;
