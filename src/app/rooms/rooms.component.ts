@@ -1,3 +1,4 @@
+import { RoomsService } from './services/rooms.service';
 import { HeaderComponent } from './../header/header.component';
 import { AfterViewChecked, AfterViewInit, Component, DoCheck, OnChanges, OnInit, QueryList, SimpleChanges, ViewChild, ViewChildren } from '@angular/core';
 import { Room, RoomList } from './rooms';
@@ -20,80 +21,18 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
     bookedRooms: 5
   }
 
-  selectedRoom!: RoomList;
+  roomList: RoomList[] = [];
 
-  roomList: RoomList[] = [
-    {
-      roomNumber: 1,
-      roomType: 'Deluxe Room',
-      amenities: 'Air Conditioner, Free WiFi, TV, Bathroom, Kitchen',
-      price: 500,
-      photos: 'https://www.valleyviewcasino.com/wp-content/uploads/Hero-Deluxe-Room-final.jpg',
-      checkInTime: new Date('11-Nov-2021'),
-      checkOutTime: new Date('12-Nov-2021'),
-      rating: 4.5
-    },
-    {
-      roomNumber: 2,
-      roomType: 'Delux Room',
-      amenities: 'Air Conditioner, Free WiFi, TV, Bathroom, Kitchen',
-      price: 1000,
-      photos: 'https://www.valleyviewcasino.com/wp-content/uploads/Hero-Deluxe-Room-final.jpg',
-      checkInTime: new Date('11-Nov-2021'),
-      checkOutTime: new Date('12-Nov-2021'),
-      rating: 3.45654
-    },
-    {
-      roomNumber: 3,
-      roomType: 'Private Suite',
-      amenities: 'Air Conditioner, Free WiFi, TV, Bathroom, Kitchen',
-      price: 15000,
-      photos: 'https://www.valleyviewcasino.com/wp-content/uploads/Hero-Deluxe-Room-final.jpg',
-      checkInTime: new Date('11-Nov-2021'),
-      checkOutTime: new Date('12-Nov-2021'),
-      rating: 2.6
-    }
-  ];
+  selectedRoom!: RoomList;
 
   @ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
   @ViewChildren(HeaderComponent) headerChildrenComponent!: QueryList<HeaderComponent>;
 
-  constructor() { }
+  constructor(private roomsService: RoomsService) { }
 
   ngOnInit(): void {
     // console.log(this.headerComponent.title);
-    this.roomList = [
-      {
-        roomNumber: 1,
-        roomType: 'Deluxe Room',
-        amenities: 'Air Conditioner, Free WiFi, TV, Bathroom, Kitchen',
-        price: 500,
-        photos: 'https://www.valleyviewcasino.com/wp-content/uploads/Hero-Deluxe-Room-final.jpg',
-        checkInTime: new Date('11-Nov-2021'),
-        checkOutTime: new Date('12-Nov-2021'),
-        rating: 4.5
-      },
-      {
-        roomNumber: 2,
-        roomType: 'Delux Room',
-        amenities: 'Air Conditioner, Free WiFi, TV, Bathroom, Kitchen',
-        price: 1000,
-        photos: 'https://www.valleyviewcasino.com/wp-content/uploads/Hero-Deluxe-Room-final.jpg',
-        checkInTime: new Date('11-Nov-2021'),
-        checkOutTime: new Date('12-Nov-2021'),
-        rating: 3.45654
-      },
-      {
-        roomNumber: 3,
-        roomType: 'Private Suite',
-        amenities: 'Air Conditioner, Free WiFi, TV, Bathroom, Kitchen',
-        price: 15000,
-        photos: 'https://www.valleyviewcasino.com/wp-content/uploads/Hero-Deluxe-Room-final.jpg',
-        checkInTime: new Date('11-Nov-2021'),
-        checkOutTime: new Date('12-Nov-2021'),
-        rating: 2.6
-      }
-    ];
+    this.roomList = this.roomsService.getRooms();
   }
 
   ngDoCheck(): void {
