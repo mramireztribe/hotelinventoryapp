@@ -19,6 +19,7 @@
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
     "@ng-bootstrap/ng-bootstrap": "^13.0.0",
+    "@types/stripe-v3": "^3.1.27",
     "bootstrap": "^5.2.1",
     "ngx-bootstrap": "^9.0.0",
     "rxjs": "~7.5.0",
