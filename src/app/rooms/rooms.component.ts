@@ -1,5 +1,5 @@
 import { HeaderComponent } from './../header/header.component';
-import { AfterViewInit, Component, DoCheck, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, DoCheck, OnChanges, OnInit, QueryList, SimpleChanges, ViewChild, ViewChildren } from '@angular/core';
 import { Room, RoomList } from './rooms';
 
 @Component({
@@ -7,7 +7,7 @@ import { Room, RoomList } from './rooms';
   templateUrl: './rooms.component.html',
   styleUrls: ['./rooms.component.scss']
 })
-export class RoomsComponent implements OnInit, DoCheck, AfterViewInit {
+export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterViewChecked {
 
   hotelName = 'Hilton Hotel';
   numberOfRooms = 10;
@@ -55,12 +55,13 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit {
     }
   ];
 
-  @ViewChild(HeaderComponent, { static: true }) headerComponent!: HeaderComponent;
+  @ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
+  @ViewChildren(HeaderComponent) headerChildrenComponent!: QueryList<HeaderComponent>;
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.headerComponent.title);
+    // console.log(this.headerComponent.title);
     this.roomList = [
       {
         roomNumber: 1,
@@ -100,7 +101,13 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    console.log('headerComponent', this.headerComponent);
+    this.headerComponent.title = 'Rooms View';
+
+    console.log("this.headerChildrenComponent", this.headerChildrenComponent.last.title = "Last Title");
+  }
+
+  ngAfterViewChecked(): void {
+
   }
 
   toggle() {
