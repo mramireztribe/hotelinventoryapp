@@ -1,11 +1,11 @@
 import { RoomsService } from './../rooms/services/rooms.service';
-import { AfterContentInit, Component, OnInit } from '@angular/core';
+import { AfterContentInit, Component, OnInit, Self } from '@angular/core';
 
 @Component({
   selector: 'hinv-employee',
   templateUrl: './employee.component.html',
   styleUrls: ['./employee.component.scss'],
-  providers: [RoomsService]
+  // providers: [RoomsService]
 })
 export class EmployeeComponent implements OnInit, AfterContentInit {
 
