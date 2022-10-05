@@ -5,7 +5,7 @@ import { AfterContentInit, Component, OnInit, Self } from '@angular/core';
   selector: 'hinv-employee',
   templateUrl: './employee.component.html',
   styleUrls: ['./employee.component.scss'],
-  // providers: [RoomsService]
+  providers: [RoomsService]
 })
 export class EmployeeComponent implements OnInit, AfterContentInit {
 
